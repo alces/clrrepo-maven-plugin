@@ -1,0 +1,20 @@
+<pluginMetadata>
+  <mojos>
+    <mojo>
+      <goal>purge</goal>
+      <call>purgetarget</call>
+      <description>Purges local m2 repository</description>
+      <parameters>
+        <parameter>
+          <name>repoPath</name>
+          <property>repoPath</property>
+          <required>false</required>
+          <expression>${settings.localRepository}</expression>
+          <type>java.io.File</type>
+          <defaultValue>~/.m2/repository</defaultValue>
+          <description>Path to local repository</description>
+        </parameter>
+      </parameters>
+    </mojo>
+  </mojos>
+</pluginMetadata>
