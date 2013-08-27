@@ -1,0 +1,10 @@
+<pluginMetadata>
+  <mojos>
+    <mojo>
+      <goal>reload</goal>
+      <call>reloadtarget</call>
+      <requiresDependencyResolution>true</requiresDependencyResolution>
+      <description>Reload dependencies in local m2 repository</description>
+    </mojo>
+  </mojos>
+</pluginMetadata>
