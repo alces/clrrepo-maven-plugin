@@ -10,10 +10,19 @@
           <property>repoPath</property>
           <required>false</required>
           <expression>${settings.localRepository}</expression>
-          <type>java.io.File</type>
+          <type>java.lang.String</type>
           <defaultValue>~/.m2/repository</defaultValue>
           <description>Path to local repository</description>
         </parameter>
+        <parameter>
+          <name>subTree</name>
+          <property>subTree</property>
+          <required>false</required>
+          <expression>${repo.subTree}</expression>
+          <type>java.lang.String</type>
+          <defaultValue>.</defaultValue>
+          <description>Subtree in local repository</description>
+        </parameter>        
       </parameters>
     </mojo>
   </mojos>

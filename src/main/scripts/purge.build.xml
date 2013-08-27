@@ -1,5 +1,13 @@
 <project>
   <target name="purgetarget">
-    <delete dir="${repoPath}"/>
+  	<property name="var.path.to.repo" location="${repoPath}/${subTree}"/>
+  	<echo>Purging ${var.path.to.repo}...</echo>
+    <delete>
+    	<fileset dir="${var.path.to.repo}">
+			<include name="**/*.jar"/>
+			<include name="**/*.pom"/>
+			<include name="**/*.sha1"/>
+    	</fileset>
+    </delete>	
   </target>
 </project>
