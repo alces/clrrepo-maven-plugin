@@ -1,13 +1,12 @@
 <project>
-  <target name="purgetarget">
-  	<property name="var.path.to.repo" location="${repoPath}/${subTree}"/>
-  	<echo>Purging ${var.path.to.repo}...</echo>
-    <delete>
-    	<fileset dir="${var.path.to.repo}">
-			<include name="**/*.jar"/>
-			<include name="**/*.pom"/>
-			<include name="**/*.sha1"/>
-    	</fileset>
-    </delete>	
-  </target>
+	<target name="purgetarget" if="${actualClear}">
+		<echo>Purging ${repoPath}...</echo>
+		<delete>
+			<fileset dir="${repoPath}">
+				<include name="**/*.jar"/>
+				<include name="**/*.pom"/>
+				<include name="**/*.sha1"/>
+			</fileset>
+		</delete>	
+	</target>
 </project>
