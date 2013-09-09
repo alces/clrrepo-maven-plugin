@@ -1,5 +1,5 @@
 <project>
-	<target name="purgetarget" if="${actualClear}">
+	<target name="purgetarget" if="actualClear">
 		<echo>Purging ${repoPath}...</echo>
 		<delete>
 			<fileset dir="${repoPath}">
