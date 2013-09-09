@@ -1,6 +1,0 @@
-<project>
-  <target name="reloadtarget">
-  	<!-- do nothing - actual reload in reload.mojos.xml -->
-    <echo>Reloading dependencies...</echo>
-  </target>
-</project>
