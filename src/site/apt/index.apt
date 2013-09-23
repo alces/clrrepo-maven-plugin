@@ -10,9 +10,9 @@ Cleaning local maven repository
 
  * skip - do nothing
 
-* pom.xml fragment example
+* <<<pom.xml>>> fragment example
 
-----------------------------------------------
++----------------------------------------------+
 <plugin>
 	<groupId>com.blogspot.cervus_alces</groupId>
 	<artifactId>clrrepo-maven-plugin</artifactId>
@@ -26,11 +26,11 @@ Cleaning local maven repository
 		</execution>
 	</executions>
 </plugin>			
-----------------------------------------------
++----------------------------------------------+
 
  you could do the same things by using {{{http://maven.apache.org/plugins/maven-antrun-plugin/}maven-antrun-plugin}}:
 
-----------------------------------------------
++----------------------------------------------+
 <plugin>
 	<artifactId>maven-antrun-plugin</artifactId>
 	<version>1.7</version>
@@ -57,11 +57,11 @@ Cleaning local maven repository
 		</execution>
 	</executions>
 </plugin>			
-----------------------------------------------
++----------------------------------------------+
 
  or even by using {{{http://maven.apache.org/plugins/maven-clean-plugin/}maven-clean-plugin}}:
 
-----------------------------------------------
++----------------------------------------------+
 <plugin>
 	<artifactId>maven-clean-plugin</artifactId>
 	<version>2.1</version>
@@ -78,4 +78,12 @@ Cleaning local maven repository
 		</filesets>
 	</configuration>
 </plugin>
----------------------------------- 
++----------------------------------+
+
+* Apology
+
+ Main advantages of using clrrepo-plugin instead antrun-plugin or clean-plugin are:
+
+ [[a]] shorter and simpler <<<pom.xml>>>;
+
+ [[b]] hiding actual delete logic from <<<pom.xml>>> readers.
