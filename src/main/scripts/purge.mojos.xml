@@ -15,12 +15,12 @@
           <description>Path to local repository</description>
         </parameter>
         <parameter>
-          <name>actualClear</name>
-          <property>actualClear</property>
+          <name>skip</name>
+          <property>skip</property>
           <required>false</required>
-          <expression>${clear.local.repo}</expression>
+          <expression>${skip.repo.clean}</expression>
           <type>java.lang.Boolean</type>
-          <description>Is actually clean repository?</description>
+          <description>Skip actually clean repository?</description>
         </parameter>        
       </parameters>
     </mojo>

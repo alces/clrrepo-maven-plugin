@@ -1,5 +1,8 @@
 <project>
-	<target name="purgetarget" if="actualClear">
+	<condition property="skipPurge">
+		<istrue value="${skip}"/>
+	</condition>
+	<target name="purgetarget" unless="skipPurge">
 		<echo>Purging ${repoPath}...</echo>
 		<delete>
 			<fileset dir="${repoPath}">
