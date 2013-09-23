@@ -1,0 +1,81 @@
+Cleaning local maven repository
+
+ Main and only purpose of this plugin is cleaning {{{http://maven.apache.org}Apache Maven}} <<<settings.localRepository>>> on <<<clean>>> stage of maven lifecycle.
+
+* Goals
+
+ * purge - run local repository cleaning
+
+** Options
+
+ * skip - do nothing
+
+* pom.xml fragment example
+
+----------------------------------------------
+<plugin>
+	<groupId>com.blogspot.cervus_alces</groupId>
+	<artifactId>clrrepo-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<id>clear-repo</id>
+			<phase>pre-clean</phase>
+			<goals>
+				<goal>purge</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>			
+----------------------------------------------
+
+ you could do the same things by using {{{http://maven.apache.org/plugins/maven-antrun-plugin/}maven-antrun-plugin}}:
+
+----------------------------------------------
+<plugin>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<version>1.7</version>
+	<executions>
+		<execution>
+			<id>clear-repo</id>
+			<phase>pre-clean</phase>
+			<goals>
+				<goal>run</goal>
+			</goals>
+			<configuration>
+				<skip>${skip.repo.clean}</skip>
+				<target>							
+					<echo>Purging ${settings.localRepository}...</echo>
+					<delete>
+						<fileset dir="${settings.localRepository}">
+							<include name="**/*.jar"/>
+							<include name="**/*.pom"/>
+							<include name="**/*.sha1"/>
+						</fileset>
+					</delete>
+				</target>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>			
+----------------------------------------------
+
+ or even by using {{{http://maven.apache.org/plugins/maven-clean-plugin/}maven-clean-plugin}}:
+
+----------------------------------------------
+<plugin>
+	<artifactId>maven-clean-plugin</artifactId>
+	<version>2.1</version>
+	<configuration>
+		<filesets>
+			<fileset>
+				<directory>${settings.localRepository}</directory>
+				<includes>
+					<include>**/*.jar</include>
+					<include>**/*.pom</include>
+					<include>**/*.sha1</include>
+				</includes>
+			</fileset>
+		</filesets>
+	</configuration>
+</plugin>
+---------------------------------- 
