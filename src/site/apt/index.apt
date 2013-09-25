@@ -4,11 +4,11 @@ Cleaning local maven repository
 
 * Goals
 
- * purge - run local repository cleaning
+ * <<purge>> - run local repository cleaning
 
 ** Options
 
- * skip - do nothing
+ * <<skip>> - if <true> plugin actually does nothing (default: <false>)
 
 * <<<pom.xml>>> fragment example
 
