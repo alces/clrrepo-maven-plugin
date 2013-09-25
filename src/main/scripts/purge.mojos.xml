@@ -4,6 +4,7 @@
       <goal>purge</goal>
       <call>purgetarget</call>
       <description>Purges local m2 repository</description>
+      <phase>pre-clean</phase>
       <parameters>
         <parameter>
           <name>repoPath</name>
