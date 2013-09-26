@@ -10,6 +10,7 @@
           <name>repoPath</name>
           <property>repoPath</property>
           <required>false</required>
+	  <readonly>true</readonly>
           <expression>${settings.localRepository}</expression>
           <type>java.io.File</type>
           <defaultValue>~/.m2/repository</defaultValue>
