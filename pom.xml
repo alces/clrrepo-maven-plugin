@@ -12,6 +12,12 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-plugin-plugin</artifactId>
