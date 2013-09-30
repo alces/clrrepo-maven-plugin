@@ -32,16 +32,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-	  <repository>
-		<id>local_nexus</id>
-		<name>Local nexus releases</name>
-		<url>http://127.0.0.1:8080/content/repositories/releases</url>
-	  </repository>
-	  <snapshotRepository>
-		<id>local_nexus</id>
-		<name>Local nexus snapshots</name>
-		<url>http://127.0.0.1:8080/content/repositories/snapshots</url>
-	  </snapshotRepository>
-	</distributionManagement>
 </project>
