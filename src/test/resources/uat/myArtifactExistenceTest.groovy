@@ -6,23 +6,19 @@ ART_ID='${project.artifactId}'
 VER='${project.version}'
 
 // make test project
+ant = new AntBuilder()
+ant.tempfile(property: 'art.dir', destDir: System.properties['java.io.tmpdir'])
+adir = ant.project.properties['art.dir']
+ant.mkdir dir: adir
 
-while (true) {
-	prj = sprintf("art_%.0f", Math.random() * 1e10)
-	dir = new File(System.properties['java.io.tmpdir'], prj)
-	if (! dir.exists()) break
-}
-
-dir.mkdir()
-
-pom = new File(dir, 'pom.xml')
+pom = new File(adir, 'pom.xml')
 
 try {
-	pom.withWriter {it << """
+	pom.write("""
 	<project>
 		<modelVersion>4.0.0</modelVersion>
 		<groupId>com.blogspot.cervus_alces</groupId>
-		<artifactId>$prj</artifactId>
+		<artifactId>test_clean</artifactId>
 		<packaging>jar</packaging>
 		<version>1.0-SNAPSHOT</version>
 		<build>
@@ -42,10 +38,9 @@ try {
 			</plugins>
 		</build>
 	</project>
-	"""
-	}
+	""")
 
-	repo = new File(dir, 'repository')
+	repo = new File(adir, 'repository')
 
 	for (skp in [true, false]) {
 		res = "mvn -f $pom.path -Dmaven.repo.local=$repo.path -Dskip.repo.clean=$skp clean".execute().text
@@ -54,9 +49,5 @@ try {
 	}
 } finally {
 	// cleanup
-	deltree = {f -> 
-		if (f.directory) f.eachFile {deltree(it)}
-		f.delete()
-	} 
-	deltree(dir)
+	ant.delete dir: adir
 }
