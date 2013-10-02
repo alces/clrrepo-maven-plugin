@@ -1,2 +1,2 @@
 Plugin cleans maven local repository.
-See at src/site subdirectory for more documentation.
+Look into src/site subdirectory for more documentation.
