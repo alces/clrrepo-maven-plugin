@@ -9,9 +9,8 @@ ant = new AntBuilder()
 
 try {
 	// make test project
-	ant.sequential {
-		tempfile(property: 'art.dir', destDir: 'target')
-		echo(file: '${art.dir}/pom.xml', message: """
+	ant.tempfile(property: 'art.dir', destDir: 'target')
+	ant.echo(file: '${art.dir}/pom.xml', message: """
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.blogspot.cervus_alces</groupId>
@@ -35,21 +34,13 @@ try {
 		</plugins>
 	</build>
 </project>
-		""")
+	""")
 
-		for (skp in 1..0) {
-			exec dir: '${art.dir}', failonerror: true, command: "mvn -Dmaven.repo.local=repository -Dskip.repo.clean=${skp.asBoolean()} clean"
-			fail(message: "UNEXPECTED ARTIFACT EXISTENSE (must be $skp)") {
-				condition {
-					not {
-						resourcecount(count: skp) {
-							fileset dir: '${art.dir}/repository', includes: "**/${ART_ID}-${VER}.jar"
-						}
-					}
-				}
-			}
-		}
+	for (skp in 1..0) {
+		ant.exec dir: '${art.dir}', failonerror: true, command: "mvn -Dmaven.repo.local=repository -Dskip.repo.clean=${skp.asBoolean()} clean"
+		assert ant.fileset(dir: '${art.dir}/repository', includes: "**/${ART_ID}-${VER}.jar").size() == skp, "UNEXPECTED ARTIFACT COUNT (must be $skp)"			
 	}
+
 } finally {
 	// cleanup
 	ant.delete dir: '${art.dir}'
